@@ -1,1 +1,35 @@
-/* You can add global styles to this file, and also import other style files */
+
+/* src/styles.css — styles globaux, appliqués à toute l'appli */
+@import url('https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@400;500;700;800&display=swap');
+
+:root {
+  --encre: #24463a;   /* vert chou : texte principal */
+  --tomate: #e5483b;  /* accent : titre, article barré */
+  --feuille: #3e7d4f; /* cases cochées, focus */
+  --gris: #7d877f;    /* texte secondaire */
+  --trait: #e4e7e2;   /* séparateurs */
+}
+ 
+body {
+  margin: 0;
+  font-family: 'Bricolage Grotesque', system-ui, sans-serif;
+  color: var(--encre);
+  background: #fff;
+}
+ 
+/* Bandeau nappe vichy en haut de page */
+body::before {
+  content: '';
+  display: block;
+  height: 1.25rem;
+  background:
+    linear-gradient(90deg, rgb(229 72 59 / 0.45) 50%, transparent 0),
+    linear-gradient(rgb(229 72 59 / 0.45) 50%, transparent 0);
+  background-size: 1.5rem 1.5rem;
+}
+ 
+:focus-visible {
+  outline: 3px solid var(--feuille);
+  outline-offset: 2px;
+}
+ 

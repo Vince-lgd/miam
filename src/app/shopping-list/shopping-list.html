@@ -1,14 +1,31 @@
-<input #champ placeholder="Ex : tomates" (keyup.enter)="ajouter(champ.value); champ.value = ''" /><button
-    (click)="ajouter(champ.value); champ.value = '';">Ajouter</button>
+<header class="entete">
+  <h1>miam</h1>
+  @if (nombreItems() > 0) {
+    <p class="compteur">{{ nombreItems() }} article{{ nombreItems() > 1 ? 's' : '' }}</p>
+  }
+</header>
+
+<div class="ajout">
+  <input
+    #champ
+    placeholder="Ajouter un article"
+    (keyup.enter)="ajouter(champ.value); champ.value = ''"
+  />
+  <button (click)="ajouter(champ.value); champ.value = ''">Ajouter</button>
+</div>
 
 @if (nombreItems() === 0) {
-<p> La liste est vide</p>
+  <p class="vide">Rien sur la liste pour l'instant. Ajoutez votre premier article.</p>
 } @else {
-<p>{{nombreItems()}} article(s)</p>
-
-<ul>
-    @for (item of items(); track $index) {
-    <li>{{item}}</li>
+  <ul class="liste">
+    @for (item of items(); track item.id) {
+      <li [class.achete]="item.achete">
+        <label>
+          <input type="checkbox" [checked]="item.achete" (change)="basculer(item.id)" />
+          <span>{{ item.nom }}</span>
+        </label>
+        <button class="supprimer" (click)="supprimer(item.id)" aria-label="Supprimer">✕</button>
+      </li>
     }
-</ul>
+  </ul>
 }
