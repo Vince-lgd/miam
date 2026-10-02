@@ -11,7 +11,12 @@ export class ShoppingList {
   nombreItems = computed(() => this.items().length);
 
   ajouter(nom: string) {
-    this.items.update((liste) => [...liste, nom]);
+    const nomPropre = nom.trim();
     
+    if (!nomPropre) {
+      return;
+    }
+
+    this.items.update((liste) => [...liste, nomPropre]);
   }
 }

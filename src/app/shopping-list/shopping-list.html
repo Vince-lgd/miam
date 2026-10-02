@@ -1,14 +1,14 @@
-<input #champ placeholder="Ex : tomates" />
-<button (click)="ajouter(champ.value)">Ajouter</button>
-<p>{{nombreItems()}} article(s)</p>
+<input #champ placeholder="Ex : tomates" (keyup.enter)="ajouter(champ.value); champ.value = ''" /><button
+    (click)="ajouter(champ.value); champ.value = '';">Ajouter</button>
 
 @if (nombreItems() === 0) {
-    <p> La liste est vide</p>
+<p> La liste est vide</p>
 } @else {
+<p>{{nombreItems()}} article(s)</p>
+
 <ul>
     @for (item of items(); track $index) {
-        <li>{{item}}</li>
+    <li>{{item}}</li>
     }
 </ul>
 }
-
