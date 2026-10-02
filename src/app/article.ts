@@ -4,4 +4,5 @@ export interface Article {
   achete: boolean;
   description?: string;
   prix?: number;
+  quantite: number;
 }

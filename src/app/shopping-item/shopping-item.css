@@ -1,0 +1,68 @@
+:host {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+label {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  gap: 0.875rem;
+  font-size: 1.125rem;
+  cursor: pointer;
+}
+
+input[type='checkbox'] {
+  width: 1.375rem;
+  height: 1.375rem;
+  accent-color: var(--feuille);
+}
+
+.achete {
+  color: var(--gris);
+  text-decoration: line-through;
+  text-decoration-color: var(--tomate);
+  text-decoration-thickness: 3px;
+}
+
+.supprimer {
+  padding: 0.5rem;
+  font-size: 1rem;
+  color: var(--gris);
+  background: none;
+  border: 0;
+  cursor: pointer;
+}
+
+.supprimer:hover {
+  color: var(--tomate);
+}
+
+.quantite {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+.quantite button {
+  width: 2rem;
+  height: 2rem;
+  font: inherit;
+  color: inherit;
+  background: none;
+  border: 1px solid var(--trait);
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+.quantite button:disabled {
+  opacity: 0.3;
+  cursor: default;
+}
+
+.quantite span {
+  min-width: 1.5rem;
+  text-align: center;
+}

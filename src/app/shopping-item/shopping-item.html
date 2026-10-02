@@ -1,0 +1,14 @@
+<label>
+  <input type="checkbox" [checked]="article().achete" (change)="basculement.emit(article().id)" />
+  <span [class.achete]="article().achete">{{ article().nom }}</span>
+</label>
+
+<div class="quantite">
+  <button (click)="changementQuantite.emit(article().quantite - 1)"
+          [disabled]="article().quantite <= 1" aria-label="Diminuer">−</button>
+  <span>{{ article().quantite }}</span>
+  <button (click)="changementQuantite.emit(article().quantite + 1)"
+          aria-label="Augmenter">+</button>
+</div>
+
+<button class="supprimer" (click)="suppression.emit(article().id)" aria-label="Supprimer">✕</button>
