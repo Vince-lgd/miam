@@ -1,1 +1,14 @@
-<p>shopping-list works!</p>
+<input #champ placeholder="Ex : tomates" />
+<button (click)="ajouter(champ.value)">Ajouter</button>
+<p>{{nombreItems()}} article(s)</p>
+
+@if (nombreItems() === 0) {
+    <p> La liste est vide</p>
+} @else {
+<ul>
+    @for (item of items(); track $index) {
+        <li>{{item}}</li>
+    }
+</ul>
+}
+

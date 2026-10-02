@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, signal, computed } from '@angular/core';
 
 @Component({
   imports: [],
@@ -6,4 +6,12 @@ import { Component } from '@angular/core';
   styleUrl: './shopping-list.css',
   templateUrl: './shopping-list.html',
 })
-export class ShoppingList {}
+export class ShoppingList {
+  items = signal<string[]>(['Lait', 'Pain']);
+  nombreItems = computed(() => this.items().length);
+
+  ajouter(nom: string) {
+    this.items.update((liste) => [...liste, nom]);
+    
+  }
+}
