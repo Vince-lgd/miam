@@ -1,2 +1,6 @@
-<app-shopping-list />
-<app-idees-recettes />
+<nav class="navigation">
+  <a routerLink="/" routerLinkActive="actif" [routerLinkActiveOptions]="{ exact: true }">Liste</a>
+  <a routerLink="/recettes" routerLinkActive="actif">Recettes</a>
+</nav>
+
+<router-outlet />

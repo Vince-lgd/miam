@@ -1,0 +1,20 @@
+.navigation {
+  display: flex;
+  gap: 1.5rem;
+  max-width: 32rem;
+  margin: 0 auto;
+  padding: 1rem 1.25rem 0;
+}
+
+.navigation a {
+  padding-bottom: 0.25rem;
+  font-weight: 600;
+  color: var(--gris);
+  text-decoration: none;
+  border-bottom: 3px solid transparent;
+}
+
+.navigation a.actif {
+  color: var(--encre);
+  border-bottom-color: var(--tomate);
+}
