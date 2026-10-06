@@ -1,0 +1,25 @@
+<h2>Idées recettes</h2>
+
+<div class="recherche">
+  <input #terme placeholder="Ex : pasta, chicken, salad"
+         (keyup.enter)="rechercher(terme.value)" />
+  <button (click)="rechercher(terme.value)">Chercher</button>
+</div>
+
+@if (chargement()) {
+  <p class="info">Recherche en cours…</p>
+} @else if (erreur()) {
+  <p class="info">{{ erreur() }}</p>
+} @else {
+  <ul>
+    @for (recette of resultats(); track recette.id) {
+      <li>
+        <img [src]="recette.image" [alt]="recette.name" />
+        <span>{{ recette.name }}</span>
+        <button (click)="ajouterIngredients(recette)">+ Ingrédients</button>
+      </li>
+    } @empty {
+      <li class="info">Aucune recette pour l'instant. Essaie « pasta » ou « chicken ».</li>
+    }
+  </ul>
+}
