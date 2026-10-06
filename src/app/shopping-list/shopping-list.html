@@ -1,37 +1,37 @@
 <header class="entete">
     <h1>miam</h1>
-    @if (nombreItems() > 0) {
-    <p class="compteur">{{ aAcheter().length }} article à acheter{{ aAcheter().length > 1 ? 's' : '' }}</p>
+    @if (liste.items().length > 0) {
+    <p class="compteur">{{ liste.aAcheter().length }} article à acheter{{ liste.aAcheter().length > 1 ? 's' : '' }}</p>
     }
 </header>
 
 <div class="ajout">
-    <input #champ placeholder="Ajouter un article" (keyup.enter)="ajouter(champ.value); champ.value = ''" />
-    <button (click)="ajouter(champ.value); champ.value = ''">Ajouter</button>
+    <input #champ placeholder="Ajouter un article" (keyup.enter)="liste.ajouter(champ.value); champ.value = ''" />
+    <button (click)="liste.ajouter(champ.value); champ.value = ''">Ajouter</button>
 </div>
 
-@if (nombreItems() === 0) {
+@if (liste.items().length === 0) {
 <p class="vide">Rien sur la liste pour l'instant. Ajoutez votre premier article.</p>
 } @else {
 <ul class="liste">
-    @for (item of aAcheter(); track item.id) {
+    @for (item of liste.aAcheter(); track item.id) {
     <li>
-        <app-shopping-item [article]="item" (basculement)="basculer($event)" (suppression)="supprimer($event)"
-            (changementQuantite)="changerQuantite(item.id, $event)" />
+        <app-shopping-item [article]="item" (basculement)="liste.basculer($event)" (suppression)="liste.supprimer($event)"
+            (changementQuantite)="liste.changerQuantite(item.id, $event)" />
     </li>
     }
 </ul>
 
-@if (dansLePanier().length > 0) {
+@if (liste.dansLePanier().length > 0) {
 <div class="panier-entete">
     <h2>Dans le panier</h2>
-    <button (click)="viderPanier()">Vider le panier</button>
+    <button (click)="liste.viderPanier()">Vider le panier</button>
 </div>
 <ul class="liste">
-    @for (item of dansLePanier(); track item.id) {
+    @for (item of liste.dansLePanier(); track item.id) {
     <li>
-        <app-shopping-item [article]="item" (basculement)="basculer($event)" (suppression)="supprimer($event)"
-            (changementQuantite)="changerQuantite(item.id, $event)" />
+        <app-shopping-item [article]="item" (basculement)="liste.basculer($event)" (suppression)="liste.supprimer($event)"
+            (changementQuantite)="liste.changerQuantite(item.id, $event)" />
     </li>
     }
 </ul>
