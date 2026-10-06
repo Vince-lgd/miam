@@ -1,7 +1,10 @@
 import { Component, inject, signal } from '@angular/core';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
+import { Subject, debounceTime, distinctUntilChanged, switchMap, tap, catchError, of } from 'rxjs';
 import { Recettes } from '../recettes';
 import { Recette } from '../recette';
 import { ListeCourses } from '../liste-courses';
+
 
 @Component({
   imports: [],
@@ -17,20 +20,37 @@ export class IdeesRecettes {
   protected readonly chargement = signal(false);
   protected readonly erreur = signal('');
 
-  rechercher(terme: string) {
-    this.chargement.set(true);
-    this.erreur.set('');
+  private readonly saisie$ = new Subject<string>();
 
-    this.recettes.rechercher(terme).subscribe({
-      next: (recettes) => {
+  constructor() {
+    this.saisie$
+      .pipe(
+        debounceTime(200),
+        distinctUntilChanged(),
+        tap(() => {
+          this.chargement.set(true);
+          this.erreur.set('');
+        }),
+        switchMap((terme) =>
+          terme.length < 2
+            ? of([])
+            : this.recettes.rechercher(terme).pipe(
+                catchError(() => {
+                  this.erreur.set('Impossible de charger les recettes.');
+                  return of([]);
+                })
+              )
+        ),
+        takeUntilDestroyed()
+      )
+      .subscribe((recettes) => {
         this.resultats.set(recettes);
         this.chargement.set(false);
-      },
-      error: () => {
-        this.erreur.set('Impossible de charger les recettes. Vérifie ta connexion.');
-        this.chargement.set(false);
-      },
-    });
+      });
+  }
+
+  taper(terme: string) {
+    this.saisie$.next(terme.trim());
   }
 
   ajouterIngredients(recette: Recette) {

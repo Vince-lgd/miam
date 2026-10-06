@@ -1,9 +1,8 @@
 <h2>Idées recettes</h2>
 
 <div class="recherche">
-  <input #terme placeholder="Ex : pasta, chicken, salad"
-         (keyup.enter)="rechercher(terme.value)" />
-  <button (click)="rechercher(terme.value)">Chercher</button>
+  <input #terme placeholder="Tape une recette : pasta, chicken…"
+         (input)="taper(terme.value)" />
 </div>
 
 @if (chargement()) {
