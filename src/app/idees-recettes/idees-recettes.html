@@ -14,7 +14,7 @@
     @for (recette of resultats(); track recette.id) {
       <li>
         <img [src]="recette.image" [alt]="recette.name" />
-        <span>{{ recette.name }}</span>
+        <a [routerLink]="['/recettes', recette.id]">{{ recette.name }}</a>
         <button (click)="ajouterIngredients(recette)">+ Ingrédients</button>
       </li>
     } @empty {

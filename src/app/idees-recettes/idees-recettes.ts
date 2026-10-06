@@ -1,4 +1,5 @@
 import { Component, inject, signal } from '@angular/core';
+import { RouterLink } from '@angular/router';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { Subject, debounceTime, distinctUntilChanged, switchMap, tap, catchError, of } from 'rxjs';
 import { Recettes } from '../recettes';
@@ -7,7 +8,7 @@ import { ListeCourses } from '../liste-courses';
 
 
 @Component({
-  imports: [],
+  imports: [RouterLink],
   selector: 'app-idees-recettes',
   styleUrl: './idees-recettes.css',
   templateUrl: './idees-recettes.html',

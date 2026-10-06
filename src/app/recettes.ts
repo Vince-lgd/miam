@@ -14,4 +14,8 @@ export class Recettes {
       })
       .pipe(map((reponse) => reponse.recipes));
   }
+
+  parId(id: string): Observable<Recette> {
+  return this.http.get<Recette>(`https://dummyjson.com/recipes/${id}`);
+}
 }
