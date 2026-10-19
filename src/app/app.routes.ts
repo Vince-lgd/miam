@@ -1,5 +1,6 @@
 import { Routes } from '@angular/router';
 import { ShoppingList } from './shopping-list/shopping-list';
+import { idRecetteValideGuard } from './id-recette-valide-guard';
 
 export const routes: Routes = [
   { path: '', component: ShoppingList, title: 'Liste de courses' },
@@ -11,6 +12,7 @@ export const routes: Routes = [
   {
     path: 'recettes/:id',
     loadComponent: () => import('./detail-recette/detail-recette').then((m) => m.DetailRecette),
+    canActivate: [idRecetteValideGuard],
     title: 'Recette',
   },
   { path: '**', redirectTo: '' },
