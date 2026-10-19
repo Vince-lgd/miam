@@ -1,8 +1,8 @@
 <h2>Idées recettes</h2>
 
 <div class="recherche">
-  <input #terme placeholder="Tape une recette : pasta, chicken…"
-         (input)="taper(terme.value)" />
+  <input #champ placeholder="Tape une recette : pasta, chicken…"
+       (input)="taper(champ.value)" [value]="terme()" />
 </div>
 
 @if (chargement()) {

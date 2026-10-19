@@ -17,7 +17,8 @@ export class IdeesRecettes {
   private readonly recettes = inject(Recettes);
   private readonly liste = inject(ListeCourses);
 
-  protected readonly resultats = signal<Recette[]>([]);
+  protected readonly resultats = this.recettes.resultats;
+  protected readonly terme = this.recettes.terme;
   protected readonly chargement = signal(false);
   protected readonly erreur = signal('');
 
@@ -45,13 +46,14 @@ export class IdeesRecettes {
         takeUntilDestroyed()
       )
       .subscribe((recettes) => {
-        this.resultats.set(recettes);
+        this.recettes.memoriserResultats(recettes);
         this.chargement.set(false);
       });
   }
 
   taper(terme: string) {
     this.saisie$.next(terme.trim());
+    this.recettes.memoriserTerme(terme);
   }
 
   ajouterIngredients(recette: Recette) {
