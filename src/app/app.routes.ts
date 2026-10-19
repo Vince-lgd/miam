@@ -1,11 +1,17 @@
 import { Routes } from '@angular/router';
 import { ShoppingList } from './shopping-list/shopping-list';
-import { IdeesRecettes } from './idees-recettes/idees-recettes';
-import { DetailRecette } from './detail-recette/detail-recette';
 
 export const routes: Routes = [
-    { path: '', component: ShoppingList, title: 'Liste de courses' },
-    { path: 'recettes', component: IdeesRecettes, title: 'Idées recettes' },
-    { path: 'recettes/:id', component: DetailRecette, title: 'Recette' },
-    { path: '**', redirectTo: '' },
+  { path: '', component: ShoppingList, title: 'Liste de courses' },
+  {
+    path: 'recettes',
+    loadComponent: () => import('./idees-recettes/idees-recettes').then((m) => m.IdeesRecettes),
+    title: 'Idées recettes',
+  },
+  {
+    path: 'recettes/:id',
+    loadComponent: () => import('./detail-recette/detail-recette').then((m) => m.DetailRecette),
+    title: 'Recette',
+  },
+  { path: '**', redirectTo: '' },
 ];
