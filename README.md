@@ -1,59 +1,46 @@
-# Miam
+# miam
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 22.2.1.
+Application de liste de courses partagée, développée avec Angular.
 
-## Development server
+Projet personnel réalisé pour apprendre Angular en venant de Vue.js : chaque fonctionnalité a servi à mettre en pratique une notion du framework.
 
-To start a local development server, run:
+## Fonctionnalités
+
+- Liste de courses : ajout d'articles, quantités, cases à cocher, suppression
+- Sections « À acheter » et « Dans le panier », avec vidage du panier en un clic
+- Sauvegarde automatique de la liste dans le navigateur
+- Recherche instantanée de recettes, avec ajout de leurs ingrédients à la liste
+- Page de détail pour chaque recette
+
+## Stack technique
+
+- Angular 22, TypeScript, RxJS
+- API de recettes : [DummyJSON](https://dummyjson.com) (données de démonstration)
+
+## Notions Angular mises en pratique
+
+- Composants standalone, signals, `computed` et `effect`
+- Control flow : `@if`, `@for`, `@empty`
+- Communication parent / enfant avec `input()` et `output()`
+- Isolation des styles par composant et `:host`
+- Services et injection de dépendances, état protégé avec `asReadonly()`
+- `HttpClient` et Observables
+- Recherche instantanée avec RxJS : `debounceTime`, `distinctUntilChanged`, `switchMap`, `catchError`, `takeUntilDestroyed`
+- Routing : paramètres de route, `withComponentInputBinding`, lazy loading, guards
+
+## Lancer le projet en local
+
+Prérequis : Node.js (version LTS) et Angular CLI.
 
 ```bash
+npm install
 ng serve
 ```
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+L'application est ensuite disponible sur http://localhost:4200.
 
-## Code scaffolding
+## Prochaines étapes
 
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
-
-```bash
-ng generate component component-name
-```
-
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
-
-```bash
-ng generate --help
-```
-
-## Building
-
-To build the project run:
-
-```bash
-ng build
-```
-
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
-
-## Running unit tests
-
-To execute unit tests with the [Vitest](https://vitest.dev/) test runner, use the following command:
-
-```bash
-ng test
-```
-
-## Running end-to-end tests
-
-For end-to-end (e2e) testing, run:
-
-```bash
-ng e2e
-```
-
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
-
-## Additional Resources
-
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+- Formulaires réactifs pour enregistrer ses propres recettes
+- API REST en Java / Spring Boot pour partager la liste entre plusieurs appareils
+- Suggestions de recettes générées par IA à partir de la liste de courses
