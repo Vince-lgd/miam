@@ -1,4 +1,5 @@
 # miam
+**Démo en ligne :** https://miam-courses.vercel.app
 
 Application de liste de courses partagée, développée avec Angular.
 
